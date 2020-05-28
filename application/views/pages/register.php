@@ -26,20 +26,21 @@
 
   <div class="card">
     <div class="card-body register-card-body">
+      <?php $this->load->view('flash-messages'); ?>
       <p class="login-box-msg">Create New Account</p>
 
       <form action="" method="post" id="register-form">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Enter Full name">
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter Full name" value="<?=($this->input->post('name'))?>">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Enter email">
+          <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" value="<?=($this->input->post('email'))?>" />
         </div>
         <div class="form-group">
           <label for="contact">Contact</label>
-          <input type="text" name="contact" id="contact" class="form-control" placeholder="Enter Phone Contact">
+          <input type="text" name="contact" id="contact" class="form-control" placeholder="Enter Phone Contact" value="<?=($this->input->post('contact'))?>" />
         </div>
         <div class="row">
           <div class="col-8">

@@ -18,8 +18,8 @@ class Authenticate extends MY_Public_Controller {
 
     public function index_post(){
         
-        $this->form_validation->set_rules('email','Email','required|valid_email');
-        $this->form_validation->set_rules('password','Password','required');
+        $this->form_validation->set_rules('email','Email','required|trim|valid_email');
+        $this->form_validation->set_rules('password','Password','required|trim');
         if ($this->form_validation->run() == FALSE) {
             $this->index_get();
         }else{
@@ -64,11 +64,19 @@ class Authenticate extends MY_Public_Controller {
     }
 
     public function register_post( $referral_id){
-        $this->form_validation->set_rules('name','Name','required');
-        $this->form_validation->set_rules('email','Email','required|valid_email');
-        $this->form_validation->set_rules('contact','Contact','required');
+        $this->form_validation->set_rules('name','Name','required|trim');
+        $this->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique_email',
+            array(
+                'is_unique_email'     => 'This %s already exists.'
+            )
+        );
+        $this->form_validation->set_rules('contact','Contact','required|trim|is_unique_contact',
+            array(
+                'is_unique_contact' =>  'This %s already associated with another account.'
+            )
+        );
         if ($this->form_validation->run() == FALSE) {
-            $this->register_get();
+            $this->register_get($referral_id);
         }else{
 
             $user = $this->Users->get_by('md5(id)', $referral_id);

@@ -36,6 +36,19 @@ class MY_Controller extends CI_Controller{
       }
       show_404();
     }
+
+    /**
+     * Check for the Unique Email Check of the Users
+     * 
+     * @return bool | True if Email Does not exists | False If exists 
+     */
+    public function is_unique_email($value=NULL){
+        if(user_email_exists_check($value) === FALSE){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
 
 require_once APPPATH.'core/MY_Admin_Controller.php';

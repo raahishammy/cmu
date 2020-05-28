@@ -8,7 +8,7 @@ if (!function_exists('show_flash_messages')) {
         if(!empty($messages)){
             if(is_array($messages)){
                 foreach($messages as $loop=>$message){
-                    $messages_html .= (($loop + 1) == count($messages)) ? $message : $message.'<br />';
+                    $messages_html .= '<p>'.$message.'</p>';
                 }
             }else{
                 $messages_html = $messages;

@@ -26,33 +26,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <?php if (!empty(validation_errors())): ?>
-        <div class="alert alert-danger">
-          <button type="button" class="close" data-dismiss="alert">
-            <i class="ace-icon fa fa-times"></i>
-          </button>
-          <?php echo validation_errors('<br />', '') ?>
-          <br />
-        </div>
-      <?php endif; ?>
-      <?php if ($this->session->flashdata('fail')): ?>
-        <div class="alert alert-danger">
-          <button type="button" class="close" data-dismiss="alert">
-            <i class="ace-icon fa fa-times"></i>
-          </button>
-          <?php echo show_flash_messages($this->session->flashdata('fail')); ?>
-          <br />
-        </div>
-      <?php endif; ?>
-      <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success">
-          <button type="button" class="close" data-dismiss="alert">
-            <i class="ace-icon fa fa-times"></i>
-          </button>
-          <?php echo show_flash_messages($this->session->flashdata('success')); ?>
-          <br />
-        </div>
-      <?php endif; ?>
+      <?php $this->load->view('flash-messages'); ?>
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="" method="post" id="login-form">
