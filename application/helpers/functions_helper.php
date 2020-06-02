@@ -29,31 +29,32 @@ if (!function_exists('pr')) {
 
 if(!function_exists('create_connections_tree_view')){
     function create_connections_tree_view($connections){
-        if(!isset($connection_html)) {
-            $connection_html = '';
-        }
-        
-        $connection_html .= '<div class="hv-item-children">';
-        
-        foreach($connections as $loop=>$user){
-            $connection_html .= '<div class="hv-item-child">';
-            if(isset($user->children) && !empty($user->children)){
-                $connection_html .= '<div class="hv-item">';
-                    $connection_html .= '<div class="hv-item-parent">';
-                        $connection_html .= '<p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> '.$user->name.' </font></font></p>';
-                    $connection_html .= '</div>';
-                $connection_html .= '</div>';
-                // echo 'before ';pr($user->children);
-                $connection_html .= create_connections_tree_view($user->children);
-            }else{
-                $connection_html .= '<div class="hv-item-child">';
-                $connection_html .= '<p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> '.$user->name.' </font></font></p>';
-                $connection_html .= '</div>';
+            if(!isset($connection_html)) {
+                $connection_html = '';
             }
-            $connection_html .= '</div>';
-        }
-        $connection_html .= '</div>';
+          $connection_html .= '<div class="hv-item-children">';
+           foreach($connections as $loop=>$user){
+           $connection_html .= '<div class="hv-item-child">';   
+            if(isset($user->children) && !empty($user->children)){
+             $connection_html .= '<div class="hv-item">';
+                    $connection_html .= '<div class="hv-item-parent">';
+                        $connection_html .= '<p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">  <a href="'.site_url().'connections/'.$user->id.'">'.$user->name.' 
+                        </a></font></font></br></p>';
+                    $connection_html .= '</div>';
+                    $connection_html .= '</div>';
+                    $connection_html .= create_connections_tree_view($user->children);
+                    $connection_html .= '</div>';
 
-        return $connection_html;
+             }else{
+                    $connection_html .= '<div class="hv-item-child">';
+                 $connection_html .= '<p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> <a href="'.site_url().'connections/'.$user->id.'"> '.$user->name.'</a> </font></font></p>';
+                  $connection_html .= '</div>';
+                  $connection_html .= '</div>';
+              
+               }
+            }
+             
+        $connection_html .= '</div>';
+         return $connection_html;
     }
 }

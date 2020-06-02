@@ -62,6 +62,7 @@ $route['join/(:any)'] = 'authenticate/register/$1';
 $route['dashboard'] = 'admin/dashboard/index';
 $route['referrals'] = 'admin/referrals/index';
 $route['connections'] = 'admin/connections/index';
+$route['connections/(:any)'] = 'admin/connections/index';
 /**********************************************************************/
 
 $route['404_override'] = '';

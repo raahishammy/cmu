@@ -32,21 +32,25 @@
 
                         <!-- Key component -->
                         <div class="hv-item">
-
+                            <?php  if($this->uri->segment(2) !="" || !empty($connections)){?>
                             <div class="hv-item-parent">
-                                <p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> <?=$this->aauth->get_user_name();?> </font></font></p>
+                                <p class="simple-card"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                  <?php  if($this->uri->segment(2) ==""){?>
+                                 <?=$this->aauth->get_user_name();?>
+                                 <?php  }else{ ?>
+                                  <?php if($parent !=""){?>
+                                  <?= $parent->name;?>
+                                <?php  } } ?> </font></font></p>
                             </div>
+                          <?php  }else{?>
+                            No user found.
+                         <?php  } ?>
 
                             <?php if(!empty($connections)){ ?>
-
-                                <?php echo  create_connections_tree_view($connections); ?>
-                                
+                               <?php echo  create_connections_tree_view($connections); ?>
                             <?php } ?>
-                            
-
                         </div>
-
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>
