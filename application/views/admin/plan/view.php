@@ -64,7 +64,8 @@
                         echo "Inactive";
                       }?></td>
                     <td>
-                      <a href="<?php echo site_url();?>plan/<?php echo $indPlan->id;?>">Edit</a>
+                      <a href="<?php echo site_url();?>plan/<?php echo $indPlan->id;?>"> <i class="nav-icon fas fa-edit"></i></a>
+                      <!----<i class="nav-icon fas fa-trash danger" id="delPckage" data-id="<?php //echo $indPlan->id;?>" style="color:red;"></i>-->
 
                     </td>
                   </tr>

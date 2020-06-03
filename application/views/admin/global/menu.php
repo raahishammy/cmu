@@ -22,7 +22,7 @@
         </li>
         
      <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+           <a href="#" class="nav-link  <?= ($this->router->fetch_class() == "plans") ? "active": ""?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Plan

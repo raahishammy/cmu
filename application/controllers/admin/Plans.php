@@ -40,9 +40,10 @@ class Plans extends MY_Admin_Controller{
                        'amount' => $this->input->post('plan_amount'),
                        'status' => $this->input->post('status')
                       );
-                   $insert = $this->Plans->insert($planInfo); 
+                   $insert = $this->Plans->insert($planInfo);
+                   $insert_id = $this->db->insert_id(); 
                    $this->session->set_flashdata('success', 'Your plan has been added successful.');
-                    redirect('plan/create-plan'); 
+                    redirect('plan/'.$insert_id); 
              
             }else{
                $this->session->set_flashdata('fail', 'Something went wrong.');
