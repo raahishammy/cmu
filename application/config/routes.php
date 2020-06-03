@@ -63,6 +63,12 @@ $route['dashboard'] = 'admin/dashboard/index';
 $route['referrals'] = 'admin/referrals/index';
 $route['connections'] = 'admin/connections/index';
 $route['connections/(:any)'] = 'admin/connections/index';
+
+$route['plans'] = 'admin/plans/index';
+$route['plan/create-plan'] = 'admin/plans/create';
+$route['plan/buy-plan'] = 'admin/plans/subscribe';
+$route['plan/(:any)'] = 'admin/plans/create';
+
 /**********************************************************************/
 
 $route['404_override'] = '';

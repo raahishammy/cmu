@@ -283,7 +283,24 @@ class Aauth{
 		return $query->row()->name;
     }
 
-    /**
+    public function get_user_role($user_id=FALSE) {
+
+		if( ! $user_id){
+			$query = $this->CI->db->where('id', $this->CI->session->userdata('id'));
+		} else {
+			$query = $this->CI->db->where('id', $user_id);
+		}
+
+		$query = $this->CI->db->get('ci_aauth_users');
+
+		if ($query->num_rows() <= 0){
+			$this->error("No User Found with the given details.");
+			return FALSE;
+		}
+		return $query->row()->role;
+    }
+
+ /**
 	 * Error
 	 * Add message to error array and set flash data
 	 * @param string $message Message to add to array
