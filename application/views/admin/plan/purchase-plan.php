@@ -48,7 +48,7 @@
               <div class="card-body" style="text-align:center;">
                   Price: <?php echo $plan->amount;?> INR
               </div>
-              <button type="button" class="btn btn-warning" data-id="<?php echo $plan->id;?>">Buy</button>
+              <button type="button" class="btn btn-warning text-white" data-id="<?php echo $plan->id;?>">Buy</button>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

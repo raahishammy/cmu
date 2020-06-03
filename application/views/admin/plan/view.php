@@ -34,8 +34,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="hv-container">
-                    <div class="hv-wrapper">
-
+                    
                         <!-- Key component -->
                         <div class="hv-item">
                           <div class="card">
@@ -75,7 +74,7 @@
               </div>
               <!-- /.card-body -->
             </div>
-                        </div>
+                       
                      </div>
                 </div>
             </div>
@@ -83,11 +82,7 @@
     </section>
     <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-  <script src="<?=base_url()?>assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?=base_url()?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
+<?php $this->load->view('admin/global/footer'); ?>
 <script src="<?=base_url()?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -110,4 +105,3 @@
     });
   });
 </script>
-<?php $this->load->view('admin/global/footer'); ?>
