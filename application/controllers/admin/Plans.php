@@ -17,7 +17,8 @@ class Plans extends MY_Admin_Controller{
 
     public function index_get()
     {
-        if($this->aauth->get_user_role() == 'Admin'){
+        if($this->aauth->get_user_role() == 'Admin')
+        {
             $plans = $this->Plans->get_all();
             $this->load->view('admin/plan/view', ['plans' => $plans]);
         }
@@ -25,18 +26,21 @@ class Plans extends MY_Admin_Controller{
 
     public function create_get()
     {
-        if($this->aauth->get_user_role() == 'Admin'){
+        if($this->aauth->get_user_role() == 'Admin')
+        {
             $this->load->view('admin/plan/create');
             }
     }
     
     public function create_post()
     {
-        if($this->aauth->get_user_role() == 'Admin'){
+        if($this->aauth->get_user_role() == 'Admin')
+        {
           $this->form_validation->set_rules('plan_name', 'Plan Name', 'required'); 
           $this->form_validation->set_rules('plan_amount', 'Amount', 'required'); 
           $this->form_validation->set_rules('status', 'Status', 'required'); 
-            if($this->form_validation->run() == true){ 
+            if($this->form_validation->run() == true)
+            { 
                    $planInfo = array(
                        'plan_name' => $this->input->post('plan_name'),
                        'amount' => $this->input->post('plan_amount'),
@@ -56,9 +60,11 @@ class Plans extends MY_Admin_Controller{
 
     public function edit_get()
     {
-         if($this->aauth->get_user_role() == 'Admin'){
+         if($this->aauth->get_user_role() == 'Admin')
+         {
            $id = $this->uri->segment(2);
-           if($id !=""){
+           if($id !="")
+           {
                 $plan = $this->Plans->get_by(array('id'=>$id));
                 if($plan!="")
                 {
@@ -73,12 +79,14 @@ class Plans extends MY_Admin_Controller{
 
     public function edit_post($id = NULL)
     {
-    if($this->aauth->get_user_role() == 'Admin'){
+    if($this->aauth->get_user_role() == 'Admin')
+    {
           $id = $this->input->post('plan_id');
           $this->form_validation->set_rules('plan_name', 'Plan Name', 'required'); 
           $this->form_validation->set_rules('plan_amount', 'Amount', 'required'); 
           $this->form_validation->set_rules('status', 'Status', 'required'); 
-            if($this->form_validation->run() == true){ 
+            if($this->form_validation->run() == true)
+            { 
                    $planInfo = array(
                       'plan_name' => $this->input->post('plan_name'),
                        'amount' => $this->input->post('plan_amount'),
@@ -108,7 +116,8 @@ class Plans extends MY_Admin_Controller{
       if($packageId !="" && $this->id !="")
       {
         $findSubscription = $this->UserPlan->get_many_by(array('plan_id'=>$packageId,'user_id'=> $this->id));
-        if(empty($findSubscription)){
+        if(empty($findSubscription))
+        {
         $plan = array(
           'plan_id' => $this->input->post('package_id'),
           'user_id' => $this->id
@@ -133,8 +142,4 @@ class Plans extends MY_Admin_Controller{
         echo json_encode($data);
         die();
     }
-
-
-
-
 }

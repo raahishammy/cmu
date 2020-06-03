@@ -18,41 +18,39 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!-- Main content -->
-    <section class="content">
-        <!-- Key component -->
-      <div class="hv-item">
-        <div class="alert" id="flashdisplay" style="display:none;">
-                        <button type="button" class="close" data-dismiss="alert">
-                          <i class="fa fa-times"></i>
-                        </button>
-                        <br />
-                      </div>
-       <div class="row">
-          <?php foreach($plans as $plan){?>
-          <div class="col-md-6">
-            <div class="card card-outline card-primary">
-              <div class="card-header">
-                <h3 class="card-title"  style="float:none !important;text-align: center;"><?php echo $plan->plan_name;?></h3>
-             </div>
-              <div class="card-body" style="text-align:center;">
-                  Price: <?php echo $plan->amount;?> INR
-              </div>
-              <button type="button" class="buyPlan btn btn-warning text-white" data-id="<?php echo $plan->id;?>">Buy</button>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+      <section class="content">
+      <!-- Key component -->
+        <div class="hv-item">
+          <div class="alert" id="flashdisplay" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert">
+          <i class="fa fa-times"></i>
+          </button>
+          <br />
           </div>
-        <?php } ?>
-        </div>
+          <div class="row">
+            <?php foreach($plans as $plan){?>
+              <div class="col-md-6">
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title"  style="float:none !important;text-align: center;"><?php echo $plan->plan_name;?></h3>
+                    </div>
+                    <div class="card-body" style="text-align:center;">
+                      Price: <?php echo $plan->amount;?> INR
+                    </div>
+                        <button type="button" class="buyPlan btn btn-warning text-white" data-id="<?php echo $plan->id;?>">Buy</button>
+                    <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+              </div>
+            <?php } ?>
+          </div>
         <!-- /.row -->
-      </div>
-    </section>
-    <!-- /.content -->
+        </div>
+      </section>
+      <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
 <?php $this->load->view('admin/global/footer'); ?>
 <script>
   $(".buyPlan").on("click",function(){
@@ -81,10 +79,8 @@
                  {
                   $container.load();
                   }, 9000);
-                  
                }
             }
-          });
-
       });
+  });
  </script>

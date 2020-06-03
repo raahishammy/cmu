@@ -23,68 +23,61 @@
 						</div><!-- /.container-fluid -->
 				</div>
 				<!-- /.content-header -->
+		<!-- Main content -->
+		<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<?php $this->load->view('flash-messages'); ?>
+							<div class="hv-container">
+							<!-- Key component -->
+								<div class="hv-item">
+									<div class="card">
+											<div class="card-header">
+											<h3 class="card-title">Plan</h3>
+											</div>
+										<!-- /.card-header -->
+											<div class="card-body">
+												<table id="planListing" class="table table-bordered table-striped">
+													<thead>
+														<tr>
+															<th>Plan Name</th>
+															<th>Amount</th>
+															<th>Status</th>
+															<th>Action</th>
+														</tr>
+													</thead>
+													<tbody>
+													<?php foreach($plans as $indPlan)
+													{?>
+													<tr>
+														<td><?php echo $indPlan->plan_name;?></td>
+														<td><?php echo $indPlan->amount;?></td>
+														<td><?php if($indPlan->status == '1')
+														{
+														echo "Active";
+														}else{
+														echo "Inactive";
+														}?></td>
+														<td>
+														<a href="<?php echo site_url();?>plan/<?php echo $indPlan->id;?>"> <i class="nav-icon fas fa-edit"></i></a>
+														<!----<i class="nav-icon fas fa-trash danger" id="delPckage" data-id="<?php //echo $indPlan->id;?>" style="color:red;"></i>-->
 
-				<!-- Main content -->
-				<section class="content">
-						<div class="container-fluid">
-												<div class="row">
-														<?php $this->load->view('flash-messages'); ?>
-														<div class="hv-container">
-														<!-- Key component -->
-																<div class="hv-item">
-																				<div class="card">
-																				<div class="card-header">
-																					<h3 class="card-title">Plan</h3>
-																			</div>
-														<!-- /.card-header -->
-														<div class="card-body">
-																					<table id="planListing" class="table table-bordered table-striped">
-																					<thead>
-																							<tr>
-																									<th>Plan Name</th>
-																									<th>Amount</th>
-																									<th>Status</th>
-																									<th>Action</th>
-																					</tr>
-																					</thead>
-																					<tbody>
-																							<?php foreach($plans as $indPlan){?>
-																					<tr>
-																							<td><?php echo $indPlan->plan_name;?></td>
-																							<td><?php echo $indPlan->amount;?></td>
-																							<td><?php if($indPlan->status == '1')
-																									{
-																											echo "Active";
-																									}else{
-																											echo "Inactive";
-																									}?></td>
-																							<td>
-																									<a href="<?php echo site_url();?>plan/<?php echo $indPlan->id;?>"> <i class="nav-icon fas fa-edit"></i></a>
-																									<!----<i class="nav-icon fas fa-trash danger" id="delPckage" data-id="<?php //echo $indPlan->id;?>" style="color:red;"></i>-->
-
-																							</td>
-																					</tr>
-																			<?php } ?>
-																					</tbody>
-																			</table>
-																																								</div>
-																																						<!-- /.card-body -->
-																																						</div>
-																																						</div>
-																																			</div>
-																														</div>
-																										</div>
-																									<!-- /.card-body -->
-																								</div>
-																				</div>
-																</div>
-												</div>
+														</td>
+													</tr>
+											<?php } ?>
+													</tbody>
+												</table>
+											</div>
+										<!-- /.card-body -->
+										</div>
+									</div>
 								</div>
-				</section>
-				<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-		
+							</div>
+						</div>
+					</section>
+					<!-- /.content -->
+				</div>
+				<!-- /.content-wrapper -->
 <?php $this->load->view('admin/global/footer'); ?>
 <script src="<?=base_url()?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -92,10 +85,10 @@
 <script src="<?=base_url()?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- page script -->
 <script>
-		$(function () {
-				$("#planListing").DataTable({
-						"responsive": true,
-						"autoWidth": false,
-				});
+$(function () {
+		$("#planListing").DataTable({
+				"responsive": true,
+				"autoWidth": false,
 		});
+});
 </script>
