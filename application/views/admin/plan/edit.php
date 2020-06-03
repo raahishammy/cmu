@@ -85,15 +85,15 @@
                                         <div class="form-group">
                                           <input type="hidden" name="plan_id" value="<?php echo $plan->id;?>">
                                           <label for="exampleInputEmail1">Plan Name</label>
-                                          <input type="text" class="form-control" id="planName"name="plan_name"  value="<?php echo !empty(trim(set_value('plan_name'))) ? set_value('plan_name') : (isset($plan->plan_name) ? $plan->plan_name : "") ?>"placeholder="Enter Plan Name" required>
+                                          <input type="text" class="form-control" id="planName"name="plan_name"  value="<?php echo !empty(trim(set_value('plan_name'))) ? set_value('plan_name') : (isset($plan->plan_name) ? $plan->plan_name : "") ?>"placeholder="Enter Plan Name">
                                         </div>
                                           <div class="form-group">
                                           <label for="amount">Amount</label>
-                                          <input type="text" class="form-control" id="amount" name="plan_amount" value="<?php echo !empty(trim(set_value('plan_amount'))) ? set_value('plan_amount') : (isset($plan->amount) ? $plan->amount : "") ?>" placeholder="Enter Amount" required>
+                                          <input type="text" class="form-control" id="amount" name="plan_amount" value="<?php echo !empty(trim(set_value('plan_amount'))) ? set_value('plan_amount') : (isset($plan->amount) ? $plan->amount : "") ?>" placeholder="Enter Amount" >
                                         </div>
                                           <div class="form-group">
                                         <label>Status</label>
-                                        <select class="form-control select2" style="width: 100%;" name="status" required>
+                                        <select class="form-control select2" style="width: 100%;" name="status">
                                           <option value="1" <?php if($plan->status == '1'){ echo "selected"; } ?>>Activate</option>
                                           <option value="0" <?php if($plan->status == '0'){ echo "selected"; } ?>>Deactivate</option>
                                         </select>

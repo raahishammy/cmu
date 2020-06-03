@@ -68,10 +68,27 @@ class Plans extends MY_Admin_Controller{
         }
     }
 
-    public function edit_post()
+    public function edit_post($id = NULL)
     {
-         if($this->aauth->get_user_role() == 'Admin'){
-          pr($this->input->post());
+    if($this->aauth->get_user_role() == 'Admin'){
+          $id = $this->input->post('plan_id');
+          $this->form_validation->set_rules('plan_name', 'Plan Name', 'required'); 
+          $this->form_validation->set_rules('plan_amount', 'Amount', 'required'); 
+          $this->form_validation->set_rules('status', 'Status', 'required'); 
+            if($this->form_validation->run() == true){ 
+                   $planInfo = array(
+                      'plan_name' => $this->input->post('plan_name'),
+                       'amount' => $this->input->post('plan_amount'),
+                       'status' => $this->input->post('status')
+                      );
+                   $insert = $this->Plans->update($id, $planInfo); 
+                   $this->session->set_flashdata('success', 'Your plan has been updated successfully.');
+                    redirect('plan/'.$id); 
+             
+            }else{
+               $this->session->set_flashdata('fail', 'Something went wrong.');
+               redirect('plans');
+            }
         }
     }
 
