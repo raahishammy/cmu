@@ -88,7 +88,7 @@
                                         </div>
                                           <div class="form-group">
                                           <label for="amount">Amount</label>
-                                          <input type="text" class="form-control" id="amount" name="plan_amount" value="" placeholder="Enter Amount" required>
+                                          <input type="number" class="form-control" id="amount" name="plan_amount" value="" placeholder="Enter Amount" required>
                                         </div>
                                           <div class="form-group">
                                         <label>Status</label>

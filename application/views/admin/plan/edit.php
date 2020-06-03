@@ -89,7 +89,7 @@
                                         </div>
                                           <div class="form-group">
                                           <label for="amount">Amount</label>
-                                          <input type="text" class="form-control" id="amount" name="plan_amount" value="<?php echo !empty(trim(set_value('plan_amount'))) ? set_value('plan_amount') : (isset($plan->amount) ? $plan->amount : "") ?>" placeholder="Enter Amount" >
+                                          <input type="number" class="form-control" id="amount" name="plan_amount" value="<?php echo !empty(trim(set_value('plan_amount'))) ? set_value('plan_amount') : (isset($plan->amount) ? $plan->amount : "") ?>" placeholder="Enter Amount" >
                                         </div>
                                           <div class="form-group">
                                         <label>Status</label>
