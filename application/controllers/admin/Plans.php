@@ -24,15 +24,8 @@ class Plans extends MY_Admin_Controller{
     public function create_get()
     {
         if($this->aauth->get_user_role() == 'Admin'){
-            $plan = [];
-           $id = $this->uri->segment(2);
-           if($id !=""){
-           $plan = $this->Plans->get_by(array('id'=>$id));
-            $this->load->view('admin/plan/create', ['plan' => $plan]);
-        }else{
-            $this->load->view('admin/plan/create', ['plan' => $plan]);
-        }
-        }
+            $this->load->view('admin/plan/create');
+            }
     }
     
     public function create_post()
@@ -55,6 +48,30 @@ class Plans extends MY_Admin_Controller{
                $this->session->set_flashdata('fail', 'Something went wrong.');
               redirect('plan/create-plan');
             }
+        }
+    }
+
+    public function edit_get()
+    {
+         if($this->aauth->get_user_role() == 'Admin'){
+           $id = $this->uri->segment(2);
+           if($id !=""){
+                $plan = $this->Plans->get_by(array('id'=>$id));
+                if($plan!="")
+                {
+                    $this->load->view('admin/plan/edit', ['plan' => $plan]);
+                }else{
+                   $this->session->set_flashdata('fail', 'Something went wrong.');
+                    redirect('plan/create-plan');  
+                }
+            }
+        }
+    }
+
+    public function edit_post()
+    {
+         if($this->aauth->get_user_role() == 'Admin'){
+          pr($this->input->post());
         }
     }
 

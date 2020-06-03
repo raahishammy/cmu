@@ -67,7 +67,7 @@ $route['connections/(:any)'] = 'admin/connections/index';
 $route['plans'] = 'admin/plans/index';
 $route['plan/create-plan'] = 'admin/plans/create';
 $route['plan/buy-plan'] = 'admin/plans/subscribe';
-$route['plan/(:any)'] = 'admin/plans/create';
+$route['plan/(:any)'] = 'admin/plans/edit';
 
 /**********************************************************************/
 
