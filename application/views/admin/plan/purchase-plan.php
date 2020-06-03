@@ -1,14 +1,4 @@
 <?php $this->load->view('admin/global/header'); ?>
-
-<link rel="stylesheet" href="<?=base_url()?>assets/css/tree-child.css">
-<!-- <link rel="stylesheet" href="<?=base_url()?>assets/css/tree-parent.css"> -->
-<link rel="stylesheet" href="<?=base_url()?>assets/css/tree-style.css">
-  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -30,15 +20,16 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content basic-style">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="hv-container">
-                    <div class="hv-wrapper">
-
-                        <!-- Key component -->
-                        <div class="hv-item">
-                          <div class="row">
+    <section class="content">
+        <!-- Key component -->
+      <div class="hv-item">
+        <div class="alert" id="flashdisplay" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert">
+                          <i class="fa fa-times"></i>
+                        </button>
+                        <br />
+                      </div>
+       <div class="row">
           <?php foreach($plans as $plan){?>
           <div class="col-md-6">
             <div class="card card-outline card-primary">
@@ -48,7 +39,7 @@
               <div class="card-body" style="text-align:center;">
                   Price: <?php echo $plan->amount;?> INR
               </div>
-              <button type="button" class="btn btn-warning text-white" data-id="<?php echo $plan->id;?>">Buy</button>
+              <button type="button" class="buyPlan btn btn-warning text-white" data-id="<?php echo $plan->id;?>">Buy</button>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -56,14 +47,44 @@
         <?php } ?>
         </div>
         <!-- /.row -->
-
-                        </div>
-                     </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
     <!-- /.content -->
-</div>
-
+  </div>
+  <!-- /.content-wrapper -->
+  
 <?php $this->load->view('admin/global/footer'); ?>
+<script>
+  $(".buyPlan").on("click",function(){
+    var id = $(this).attr("data-id");
+    var userId = '<?php echo $this->aauth->get_user_id();?>';
+    $.ajax({
+            url:'<?php echo base_url('plan/buy-plan') ?>',
+            type:'POST',
+            dataType:'json',
+            data: {
+                    package_id: id,
+                    user_id: userId
+               },
+              success:function(result){
+              if(result.response ==''){
+                console.log(result.response);
+              }else{
+                var status = result['status'];
+                var message = result['message'];
+                $('.alert').css('display','block');
+                $( "#flashdisplay" ).addClass(status);
+                $('.close').after(message);
+                $(".alert").delay(5000).fadeOut();
+                 var $container = $("#flashdisplay");
+                 var refreshId = setInterval(function()
+                 {
+                  $container.load();
+                  }, 9000);
+                  
+               }
+            }
+          });
+
+      });
+ </script>

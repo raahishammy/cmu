@@ -1,8 +1,4 @@
 <?php $this->load->view('admin/global/header'); ?>
-
-<link rel="stylesheet" href="<?=base_url()?>assets/css/tree-child.css">
-<!-- <link rel="stylesheet" href="<?=base_url()?>assets/css/tree-parent.css"> -->
-<link rel="stylesheet" href="<?=base_url()?>assets/css/tree-style.css">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,56 +20,13 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content basic-style">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="hv-container">
-                   <!-- Key component -->
-                        <div class="hv-item">
-                          <section class="content">
-                            <div class="container-fluid">
+    <section class="content">
+           <div class="container-fluid">
                               <div class="row">
                                 <!-- left column -->
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
-                                  <?php if ($this->session->flashdata('fail')): ?>
-                                        <div class="alert alert-danger">
-                                            <button type="button" class="close" data-dismiss="alert">
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </button>
-                                             <strong>
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </strong>
-
-                                            <?php echo $this->session->flashdata('fail') ?>
-                                            <br />
-                                        </div>
-                                    <?php elseif ($this->session->flashdata('errors')): ?>
-                                        <div class="alert alert-danger">
-                                            <button type="button" class="close" data-dismiss="alert">
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </button>
-
-                                            <strong>
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </strong>
-                                            <?php foreach($this->session->flashdata('errors') as $errormsg){ echo $errormsg; } ?>
-                                            <br />
-                                        </div>
-                                    <?php elseif ($this->session->flashdata('success')): ?>
-                                        <div class="alert alert-success">
-                                            <button type="button" class="close" data-dismiss="alert">
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </button>
-
-                                            <strong>
-                                                <i class="ace-icon fa fa-check"></i>
-                                            </strong>
-
-                                            <?php echo $this->session->flashdata('success') ?>
-                                            <br />
-                                        </div>
-                                    <?php endif; ?>
+                                      <?php $this->load->view('flash-messages'); ?>
                                   <!-- general form elements -->
                                   <div class="card card-primary">
                                   <div class="card-header">
@@ -108,14 +61,9 @@
                                  <div class="col-md-3"></div>
                               </div>
                             </div><!-- /.container-fluid -->
-                          </section>
-                        </div>
-                 </div>
-            </div>
-        </div>
     </section>
     <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+  </div>
+  <!-- /.content-wrapper -->
   
 <?php $this->load->view('admin/global/footer'); ?>

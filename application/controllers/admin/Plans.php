@@ -11,6 +11,8 @@ class Plans extends MY_Admin_Controller{
         $this->id = $this->aauth->get_user_id();
         $this->load->library('form_validation');
         $this->load->model('Plans_model', 'Plans');
+        $this->load->model('Users_plan_model', 'UserPlan');
+        
     }
 
     public function index_get()
@@ -98,6 +100,41 @@ class Plans extends MY_Admin_Controller{
           $plans = $this->Plans->get_many_by('status','1');
            $this->load->view('admin/plan/purchase-plan', ['plans' => $plans]);
     }
+
+    public function subscribe_post()
+    {
+      $data =array();
+      $packageId = $this->input->post('package_id');
+      if($packageId !="" && $this->id !="")
+      {
+        $findSubscription = $this->UserPlan->get_many_by(array('plan_id'=>$packageId,'user_id'=> $this->id));
+        if(empty($findSubscription)){
+        $plan = array(
+          'plan_id' => $this->input->post('package_id'),
+          'user_id' => $this->id
+        );
+        $insert = $this->UserPlan->insert($plan); 
+        if($insert)
+        {
+          $data['status'] = 'alert-success';
+          $data['message'] = 'Plan Subscribed Successfully';
+        }else{
+           $data['status'] = 'alert-danger';
+           $data['message'] = 'Something went worng';
+        }
+        }else{
+           $data['status'] = 'alert-danger';
+           $data['message'] = 'This plan is already subscribed';
+        }
+      }else{
+         $data['status'] = 'alert-danger';
+         $data['message'] = 'Something went worng';
+      }
+        echo json_encode($data);
+        die();
+    }
+
+
 
 
 }
