@@ -92,5 +92,11 @@ class Plans extends MY_Admin_Controller{
         }
     }
 
+    public function subscribe_get()
+    {
+          $plans = $this->Plans->get_many_by('status','1');
+           $this->load->view('admin/plan/purchase-plan', ['plans' => $plans]);
+    }
+
 
 }
