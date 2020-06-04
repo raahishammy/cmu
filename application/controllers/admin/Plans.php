@@ -12,6 +12,10 @@ class Plans extends MY_Admin_Controller{
         $this->load->library('form_validation');
         $this->load->model('Plans_model', 'Plans');
         $this->load->model('Users_plan_model', 'UserPlan');
+        $this->load->model('User_wallet_transaction_model', 'WalletTransaction');
+        $this->load->model('User_wallet_model', 'UserWallet');
+        
+
         
     }
 
@@ -116,6 +120,7 @@ class Plans extends MY_Admin_Controller{
       if($packageId !="" && $this->id !="")
       {
         $findSubscription = $this->UserPlan->get_many_by(array('plan_id'=>$packageId,'user_id'=> $this->id));
+          $this->create_wallet($packageId);
         if(empty($findSubscription))
         {
         $plan = array(
@@ -123,6 +128,8 @@ class Plans extends MY_Admin_Controller{
           'user_id' => $this->id
         );
         $insert = $this->UserPlan->insert($plan); 
+        $insert_id = $this->db->insert_id(); 
+        $this->create_wallet_transaction($packageId);
         if($insert)
         {
           $data['status'] = 'alert-success';
@@ -132,7 +139,7 @@ class Plans extends MY_Admin_Controller{
            $data['message'] = 'Something went worng';
         }
         }else{
-           $data['status'] = 'alert-danger';
+        $data['status'] = 'alert-danger';
            $data['message'] = 'This plan is already subscribed';
         }
       }else{
@@ -142,4 +149,45 @@ class Plans extends MY_Admin_Controller{
         echo json_encode($data);
         die();
     }
+
+
+    public function create_wallet($packageId)
+    {
+      $findPackagePrice = $this->Plans->get_many_by(array('id'=>$packageId));
+      $packagePrice = $findPackagePrice[0]->amount;
+      $wallet = $this->UserWallet->get_many_by(array('user_id'=>$this->id));
+      if(empty($wallet))
+      {
+         $walletData = array(
+          'user_id' => $this->id,
+          'amount' => 0
+        );
+        $insert = $this->UserWallet->insert($walletData); 
+      }else{
+        $previousAmount = $wallet[0]->amount + $packagePrice;
+          $walletData = array(
+            'user_id' => $this->id,
+            'amount' => 0
+          );
+       $this->UserWallet->update($wallet[0]->id, $walletData); 
+      }
+      return;
+    }
+
+     public function create_wallet_transaction($packageId)
+    {
+      $findPackagePrice = $this->Plans->get_many_by(array('id'=>$packageId));
+      $packagePrice = $findPackagePrice[0]->amount;
+       $wallet = $this->UserWallet->get_many_by(array('user_id'=>$this->id));
+         $walletData = array(
+          'user_id' => $this->id,
+          'wallet_id' => $wallet[0]->id,
+          'amount' => $packagePrice
+        );
+         $insert = $this->WalletTransaction->insert($walletData); 
+        return;
+    }
+
+
+    
 }

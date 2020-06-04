@@ -21,7 +21,26 @@
 
     <!-- Main content -->
     <section class="content">
-      
+      <div class="row">
+        <?php foreach($checkWallet as $walletAmount)
+        {?>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?php echo $walletAmount->amount;?> INR</h3>
+
+                <p>Wallet Amount</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-card"></i>
+              </div>
+              <a href="#" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        <?php } ?>
+          <!-- ./col -->
+        </div>
     </section>
     <!-- /.content -->
   </div>
