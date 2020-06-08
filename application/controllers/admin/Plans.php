@@ -132,18 +132,14 @@ class Plans extends MY_Admin_Controller{
         $this->create_wallet_transaction($packageId);
         if($insert)
         {
-          $data['status'] = 'alert-success';
           $data['message'] = 'Plan Subscribed Successfully';
         }else{
-           $data['status'] = 'alert-danger';
            $data['message'] = 'Something went worng';
         }
         }else{
-        $data['status'] = 'alert-danger';
-           $data['message'] = 'This plan is already subscribed';
+         $data['message'] = 'This plan is already subscribed';
         }
       }else{
-         $data['status'] = 'alert-danger';
          $data['message'] = 'Something went worng';
       }
         echo json_encode($data);
@@ -164,7 +160,12 @@ class Plans extends MY_Admin_Controller{
         );
         $insert = $this->UserWallet->insert($walletData); 
       }else{
+        if($wallet[0]->amount == 0)
+        {
+          $previousAmount = $packagePrice;
+        }else{
         $previousAmount = $wallet[0]->amount + $packagePrice;
+        }
           $walletData = array(
             'user_id' => $this->id,
             'amount' => 0
@@ -187,7 +188,5 @@ class Plans extends MY_Admin_Controller{
          $insert = $this->WalletTransaction->insert($walletData); 
         return;
     }
-
-
-    
+ 
 }

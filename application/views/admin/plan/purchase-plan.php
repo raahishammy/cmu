@@ -68,17 +68,8 @@
               if(result.response ==''){
                 console.log(result.response);
               }else{
-                var status = result['status'];
                 var message = result['message'];
-                $('.alert').css('display','block');
-                $( "#flashdisplay" ).addClass(status);
-                $('.close').after(message);
-                $(".alert").delay(5000).fadeOut();
-                 var $container = $("#flashdisplay");
-                 var refreshId = setInterval(function()
-                 {
-                  $container.load();
-                  }, 9000);
+                alert(message);
                }
             }
       });
